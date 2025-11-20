@@ -33,7 +33,7 @@ En mi caso, he creado una cuenta root de producción para añadirla a esta organ
 
 ![Pantalla de creación de la Organization](./screenshots/03-two-accounts.png)
 
-4. A continuación, procedo a crear un rol en el servicio IAM para permitir que mi cuenta general disponga de permisos de administrador sobre la nueva cuenta de producción que hemos añadido a la organización. Para ello, seleccionaremos **Cuenta de AWS** como tipo de entidad e indicaremos el ID de la misma.
+4. A continuación, procedo a crear un rol en el servicio IAM para permitir que mi cuenta general disponga de permisos de administrador sobre la nueva cuenta de producción que hemos añadido a la organización. Este paso se realiza desde la cuenta de producción. Para ello, seleccionaremos **Cuenta de AWS** como tipo de entidad e indicaremos el ID de la misma.
 
 > Apunte: Cuando creamos la cuenta directamente desde la organización, en lugar de invitar a una cuenta existente como este caso, el rol **OrganizationAccountAccessRole** se crea de manera automática.
 
