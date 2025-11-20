@@ -49,5 +49,7 @@ Agregaremos la política de permisos **AdministratorAccess**, y por último, cre
 
 ![Pantalla de creación de la Organization](./screenshots/03-change-rol-2.png)
 
+![Pantalla de creación de la Organization](./screenshots/03-rol-changed.png)
+
 > A partir de este momento, la cuenta actual actúa como **Management Account**.
 
