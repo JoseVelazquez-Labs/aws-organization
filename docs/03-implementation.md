@@ -43,9 +43,11 @@ Agregaremos la política de permisos **AdministratorAccess**, y por último, cre
 
 ![Pantalla de creación de la Organization](./screenshots/03-iam-rol-2.png)
 
+5. Una vez se ha creado el rol, probaremos desde nuestra cuenta IAM, perteneciente a la cuenta de administración, a acceder a la cuenta de producción.
 
+![Pantalla de creación de la Organization](./screenshots/03-change-rol.png)
 
-
+![Pantalla de creación de la Organization](./screenshots/03-change-rol-2.png)
 
 > A partir de este momento, la cuenta actual actúa como **Management Account**.
 
