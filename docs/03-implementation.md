@@ -152,20 +152,91 @@ credenciales propias de esa cuenta.
 
 ## 5. - Unidades Organizativas (OU)
 
-![Rol asumido correctamente en la cuenta de Desarrollo](./screenshots/03-pro-create-ou.png)
+Una vez creadas las cuentas que formarán parte de la organización, el siguiente paso 
+consiste en **agruparlas en Unidades Organizativas (Organizational Units, OU)**.  
+Las OUs permiten aplicar políticas y gobernanza de forma centralizada a conjuntos de 
+cuentas que comparten un mismo propósito (por ejemplo, Producción, Preproducción, Sandbox, etc.).
 
-![Rol asumido correctamente en la cuenta de Desarrollo](./screenshots/03-pro-create-ou-2.png)
+En este laboratorio se han creado dos OUs principales bajo la raíz (`Root`):
 
-![Rol asumido correctamente en la cuenta de Desarrollo](./screenshots/03-pro-ou-created.png)
+- `Producción`
+- `Preproducción`
 
-![Rol asumido correctamente en la cuenta de Desarrollo](./screenshots/03-dev-create-ou.png)
+### 5.1 - Creación de la OU de Producción
 
-![Rol asumido correctamente en la cuenta de Desarrollo](./screenshots/03-dev-ou-created.png)
+1. Desde la **Management Account**, accedemos a **AWS Organizations** y a la vista de 
+   **Organización**, donde se muestra la estructura actual de cuentas bajo `Root`.
+2. En el menú **Acciones**, seleccionamos **Unidad organizativa → Crear nueva**.
 
-![Rol asumido correctamente en la cuenta de Desarrollo](./screenshots/03-ou's-created.png)
+![Creación de una nueva OU bajo Root](./screenshots/03-pro-create-ou.png)
 
-![Rol asumido correctamente en la cuenta de Desarrollo](./screenshots/03-translate-dev.png)
+3. En el formulario de creación, indicamos el nombre de la OU. En este caso, se crea
+   la OU llamada `Producción`. Opcionalmente, se podrían añadir etiquetas para una
+   mejor categorización y reporting.
+
+![Formulario de creación de la OU Producción](./screenshots/03-pro-create-ou-2.png)
+
+4. Tras confirmar la operación, la OU `Producción` aparece bajo `Root` en la estructura 
+   organizativa:
+
+![OU Producción creada bajo Root](./screenshots/03-pro-ou-created.png)
+
+### 5.2 - Creación de la OU de Preproducción
+
+Del mismo modo, se crea una segunda OU destinada a entornos de **preproducción** o 
+entornos anteriores a Producción.
+
+1. Desde la misma vista de **Organización**, repetimos el proceso de **Unidad organizativa → Crear nueva**.
+2. Asignamos el nombre `Preproducción` a esta nueva OU.
+
+![Creación de la OU Preproducción](./screenshots/03-dev-create-ou.png)
+
+3. Una vez creada, la estructura organizativa muestra ambas OUs (`Preproducción` y 
+   `Producción`) bajo `Root`:
+
+![OUs Preproducción y Producción creadas bajo Root](./screenshots/03-dev-ou-created.png)
+
+### 5.3 - Situación inicial de las cuentas y objetivo de la reorganización
+
+En este punto, la organización cuenta con tres cuentas principales:
+
+- `AWS-GENERAL-JVELAZQUEZ` → Management Account (cuenta de administración).
+- `AWS-PROD-JVELAZQUEZ` → cuenta destinada a producción.
+- `AWS-DEV-JVELAZQUEZ` → cuenta destinada a desarrollo.
+
+Inicialmente, todas las cuentas se encuentran directamente bajo `Root`.  
+El objetivo es **mover las cuentas a la OU que les corresponde** para reflejar mejor 
+su propósito y poder aplicar políticas diferenciadas en el futuro.
+
+![Estructura inicial con las tres cuentas bajo Root y las dos OUs recién creadas](./screenshots/03-ou's-created.png)
+
+### 5.4 - Trasladar la cuenta de Desarrollo a la OU de Preproducción
+
+Aunque en un entorno real se podría optar por colocar la cuenta de desarrollo en una OU 
+específica de `Sandbox` o `Development`, en este laboratorio se traslada la cuenta 
+`AWS-DEV-JVELAZQUEZ` a la OU `Preproducción` a modo de ejemplo de **reorganización de cuentas**.
+
+1. Seleccionamos la cuenta `AWS-DEV-JVELAZQUEZ` en la vista de **Organización**.
+2. En el menú **Acciones**, elegimos **Cuenta de AWS → Trasladar**.
+
+![Selección de la cuenta de Desarrollo para trasladarla a una OU](./screenshots/03-translate-dev.png)
+
+3. En la pantalla de traslado, se muestra la cuenta que se va a mover y la estructura 
+   de destino disponible. Seleccionamos la OU `Preproducción` como destino y confirmamos 
+   con **Trasladar una cuenta de AWS**.
 
 ![Rol asumido correctamente en la cuenta de Desarrollo](./screenshots/03-translate-dev-2.png)
 
-![Rol asumido correctamente en la cuenta de Desarrollo](./screenshots/03-final-ou.png)
+4. Tras trasladar la cuenta de Desarrollo, procedemos de la misma manera con Producción y su unidad organizativa correspondiente.
+   Tras completar el proceso, la estructura queda organizada de la siguiente manera:
+
+- `Root`
+  - OU `Preproducción`
+    - `AWS-DEV-JVELAZQUEZ`
+  - OU `Producción`
+    - `AWS-PROD-JVELAZQUEZ`
+  - `AWS-GENERAL-JVELAZQUEZ` (Management Account)
+
+
+![Estructura final con la cuenta de Desarrollo bajo la OU Preproducción](./screenshots/03-final-ou.png)
+
