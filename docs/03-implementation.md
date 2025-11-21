@@ -399,3 +399,4 @@ Aún no se ha asignado a ninguna cuenta; la asignación de usuarios y permission
 distintas cuentas de la organización se realizará en un apartado posterior, cuando se
 defina el modelo de acceso completo.
 
+
