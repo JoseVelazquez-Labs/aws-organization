@@ -84,7 +84,7 @@ desde un usuario IAM de la Management Account:
 
 1. Desde la consola de la Management Account, abrimos el menú de **Cambiar rol**.
 
-![Selección de cuenta y rol](./screenshots/03-switch-role-pro.png)
+![Selección de cuenta y rol](./screenshots/03-switch-pro-role.png)
 
 2. Indicamos la cuenta de producción y el rol **OrganizationAccountAccessRole**. Acto seguido, le damos a **Cambiar función**.
 
