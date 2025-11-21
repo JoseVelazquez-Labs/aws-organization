@@ -207,10 +207,6 @@ su propósito y poder aplicar políticas diferenciadas en el futuro.
 
 ### 5.4 - Trasladar las cuentas a su OU correspondiente.
 
-Aunque en un entorno real se podría optar por colocar la cuenta de desarrollo en una OU 
-específica de `Sandbox` o `Development`, en este laboratorio se traslada la cuenta 
-`AWS-DEV-JVELAZQUEZ` a la OU `Desarrollo` a modo de ejemplo de **reorganización de cuentas**.
-
 1. Seleccionamos la cuenta en la vista de **Organización**.
 2. En el menú **Acciones**, elegimos **Cuenta de AWS → Trasladar**.
 3. En la pantalla de traslado, se muestra la cuenta que se va a mover y la estructura 
