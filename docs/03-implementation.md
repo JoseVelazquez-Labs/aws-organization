@@ -293,3 +293,109 @@ Debido a la SCP `IAMDeny`, estas acciones son **denegadas**, incluso aunque el r
 > Nota: este capítulo muestra un **ejemplo práctico** de creación y uso de SCP sobre una
 > cuenta concreta. En el capítulo de diseño se recogerán todas las SCP finales utilizadas
 > y cómo se aplican sobre OUs y cuentas de la organización completa.
+
+## 7. IAM Identity Center – Configuración inicial
+
+En esta sección se muestra, de forma práctica, cómo habilitar **IAM Identity Center**
+para la organización y cómo crear un primer **conjunto de permisos** básico de tipo
+administrador.
+
+> El objetivo aquí es ver el flujo de creación paso a paso.  
+> El modelo completo de acceso (grupos, permisos por entorno, etc.) se describe en
+> el capítulo de diseño, no en este how-to.
+
+---
+
+### 7.1 Habilitar la instancia de IAM Identity Center
+
+1. Desde la **Management Account**, accedemos al servicio **IAM Identity Center**.
+2. En la pantalla de bienvenida, AWS muestra una explicación de cómo funciona el
+   servicio y permite **habilitar una instancia** para la organización.
+
+![Pantalla para habilitar IAM Identity Center](./screenshots/03-identity-center.png)
+
+3. Confirmamos la **región** donde queremos crear la instancia (en este laboratorio,
+   `us-east-1`) y dejamos la configuración avanzada con los valores por defecto.
+4. Pulsamos en **Activar** para crear la instancia de IAM Identity Center asociada
+   a nuestra AWS Organization.
+
+Tras unos instantes, se muestra la página de configuración de la instancia:
+
+![Instancia de IAM Identity Center creada para la organización](./screenshots/03-identity-center-3.png)
+
+En esta pantalla podemos ver, entre otros datos:
+
+- El **ID de la organización**.
+- El **ARN de la instancia** de Identity Center.
+- La región donde se ha creado.
+- La **URL del portal de acceso** por defecto.
+
+---
+
+### 7.2 Configuración de la fuente de identidad y del portal de acceso
+
+Para este laboratorio se mantiene la configuración por defecto:
+
+- **Fuente de identidad**: *Directorio de Identity Center*.  
+  Los usuarios y grupos se gestionarán directamente desde IAM Identity Center.
+- **Método de autenticación**: contraseña.
+
+Esta configuración es suficiente para un entorno de pruebas. En un entorno corporativo
+podría integrarse con un proveedor de identidad externo (por ejemplo, Azure AD, Okta, etc.).
+
+A continuación, se personaliza la URL del portal de acceso:
+
+1. Desde el panel principal de IAM Identity Center, en la sección
+   **Configuración de IAM Identity Center**, seleccionamos la opción para **editar la
+   URL de AWS access portal**.
+2. Indicamos un subdominio personalizado (en este caso, `josevelazquez`) y lo
+   confirmamos.
+
+![Personalización de la URL del AWS access portal](./screenshots/03-identity-center-4.png)
+
+Una vez guardado, los usuarios accederán al portal de Identity Center mediante una URL
+del tipo:
+
+`https://josevelazquez.awsapps.com/start`
+
+---
+
+### 7.3 Creación de un conjunto de permisos predefinido (AdministratorAccess)
+
+El siguiente paso es crear un **conjunto de permisos** (permission set).  
+Más adelante se podrá asignar este conjunto de permisos a cuentas específicas de la
+organización.
+
+1. En el menú de IAM Identity Center, vamos a  
+   **Permisos para varias cuentas → Conjuntos de permisos** y pulsamos en
+   **Crear conjunto de permisos**.
+
+2. En el **Paso 1 – Seleccionar el tipo de conjunto de permisos**:
+   - Elegimos **Conjunto de permisos predefinido**.
+   - Seleccionamos la política administrada por AWS **`AdministratorAccess`**, que
+     concede permisos administrativos completos sobre la cuenta donde se asigne.
+
+![Selección de tipo de conjunto de permisos y política AdministratorAccess](./screenshots/03-identity-center-5.png)
+
+3. En el **Paso 2 – Especificar los detalles del conjunto de permisos**, dejamos:
+
+   - **Nombre del conjunto de permisos**: `AdministratorAccess` (valor por defecto).
+   - **Descripción** (opcional), por ejemplo:  
+     `Conjunto de permisos administrativo para pruebas en el laboratorio`.
+   - **Duración de la sesión**: 4 horas.
+   - El resto de opciones (estado de retransmisión, etiquetas) se dejan sin configurar
+     para este laboratorio.
+
+![Detalles del conjunto de permisos AdministratorAccess](./screenshots/03-identity-center-6.png)
+
+4. En el **Paso 3 – Revisar y crear**, comprobamos el resumen de la configuración y
+   pulsamos en **Crear**.
+
+![Revisión final antes de crear el conjunto de permisos](./screenshots/03-identity-center-7.png)
+
+Tras este paso, queda creado el conjunto de permisos `AdministratorAccess` en
+IAM Identity Center.  
+Aún no se ha asignado a ninguna cuenta; la asignación de usuarios y permission sets a las
+distintas cuentas de la organización se realizará en un apartado posterior, cuando se
+defina el modelo de acceso completo.
+
