@@ -399,4 +399,154 @@ Aún no se ha asignado a ninguna cuenta; la asignación de usuarios y permission
 distintas cuentas de la organización se realizará en un apartado posterior, cuando se
 defina el modelo de acceso completo.
 
+### 7.4 Creación del grupo de administradores
+
+Para organizar mejor los permisos, se crea un grupo en IAM Identity Center que
+representará al equipo de administración.
+
+1. En el menú de **IAM Identity Center**, accedemos a **Grupos** y pulsamos en
+   **Crear grupo**.
+2. Rellenamos los datos básicos:
+
+   - **Nombre del grupo**: `Administradores`
+   - **Descripción** (opcional): por ejemplo,  
+     `Grupo de administradores con acceso a las cuentas de la organización`.
+
+3. En este momento no añadimos usuarios todavía (el grupo se puede crear vacío), así
+   que dejamos la sección de usuarios en blanco y pulsamos **Crear grupo**.
+
+![Creación del grupo Administradores](./screenshots/03-identity-center-10.png)
+
+---
+
+### 7.5 Creación del usuario "Alicia" y asignación al grupo
+
+A continuación se crea un usuario de ejemplo en el directorio interno de Identity Center
+y se añade al grupo `Administradores`.
+
+1. En IAM Identity Center, vamos a **Usuarios → Agregar usuario**.
+2. En el **Paso 1 – Especificar los detalles del usuario**, rellenamos:
+
+   - **Nombre de usuario**: `Alicia`
+   - **Dirección de correo electrónico**:  
+     `jvelazquez.aws.labs+alicia@gmail.com` (dirección usada en el laboratorio).
+   - **Nombre**: `Alicia`
+   - **Apellidos**: `Gimenez`
+   - Opción **Genere una contraseña de un solo uso** para enviarle una contraseña
+     temporal.
+
+![Creación del usuario Alicia](./screenshots/03-identity-center-8.png)
+
+3. En el **Paso 2 – Agregar usuario a grupos (opcional)**, seleccionamos el grupo
+   `Administradores` que hemos creado antes.
+
+![Asignar el usuario Alicia al grupo Administradores](./screenshots/03-identity-center-12.png)
+
+4. En el **Paso 3 – Revisar y agregar usuario**, confirmamos los datos y creamos el
+   usuario.
+
+Tras la creación, IAM Identity Center muestra una ventana con la **contraseña de uso
+único** y la URL del portal. Esta información es la que se entrega al usuario para que
+pueda iniciar sesión por primera vez:
+
+![Contraseña de un solo uso generada para Alicia](./screenshots/03-identity-center-13.png)
+
+- **URL del portal**: `https://josevelazquez.awsapps.com/start`
+- **Nombre de usuario**: `Alicia`
+- **Contraseña de uso único**: generada por IAM Identity Center.
+
+---
+
+### 7.6 Asignar el grupo Administradores a las cuentas de AWS
+
+Una vez creado el conjunto de permisos `AdministratorAccess` y el grupo
+`Administradores`, el siguiente paso es **asignar ese grupo a las cuentas de AWS**
+a través de Identity Center.
+
+1. En IAM Identity Center, vamos a  
+   **Permisos para varias cuentas → Cuentas de AWS**.
+2. Se muestra el árbol de la organización con las OUs y las cuentas.  
+   En este laboratorio se seleccionan las cuentas:
+
+   - `AWS-DEV-JVELAZQUEZ` (Desarrollo).
+   - `AWS-PROD-JVELAZQUEZ` (Producción).
+
+![Selección de cuentas de AWS para la asignación](./screenshots/03-identity-center-14.png)
+
+3. Pulsamos en **Asignar personas o grupos**.  
+   En el **Paso 1 – Seleccionar personas y grupos**, elegimos la pestaña **Grupos**
+   y marcamos el grupo `Administradores`.
+
+![Seleccionar el grupo Administradores para la asignación](./screenshots/03-identity-center-15.png)
+
+4. En el **Paso 2 – Seleccionar conjuntos de permisos**, seleccionamos el conjunto
+   de permisos `AdministratorAccess` creado en el apartado 7.3.
+
+![Seleccionar el conjunto de permisos AdministratorAccess](./screenshots/03-identity-center-16.png)
+
+5. En el **Paso 3 – Revisar y enviar**, comprobamos el resumen:
+
+   - Personas y grupos: `Administradores`.
+   - Cuentas de AWS seleccionadas: `AWS-DEV-JVELAZQUEZ` y `AWS-PROD-JVELAZQUEZ`.
+   - Conjunto de permisos: `AdministratorAccess`.
+
+   Finalmente pulsamos en **Enviar** para crear las asignaciones.
+
+![Revisión final de la asignación del grupo a las cuentas](./screenshots/03-identity-center-17.png)
+
+A partir de este momento, cualquier usuario añadido al grupo `Administradores`
+(como `Alicia`) podrá:
+
+- Entrar al portal de AWS en  
+  `https://josevelazquez.awsapps.com/start`.
+- Seleccionar la cuenta de Desarrollo o Producción.
+- Asumir el rol correspondiente con permisos de `AdministratorAccess` en esas cuentas.
+
+Este flujo completa la configuración básica de IAM Identity Center en el laboratorio:
+instancia creada, portal personalizado, conjunto de permisos de administrador, grupo
+de administradores, usuario de prueba y asignación del grupo a las cuentas de la
+organización.
+
+### 7.7 Verificación de acceso desde el portal como usuaria "Alicia"
+
+Para comprobar que toda la configuración de IAM Identity Center funciona correctamente,
+se realiza una prueba de acceso con el usuario `Alicia`.
+
+1. Desde un navegador, accedemos a la URL del portal de acceso:
+
+   `https://josevelazquez.awsapps.com/start`
+
+   En la pantalla de inicio de sesión, indicamos el **nombre de usuario** `Alicia`
+   y pulsamos **Siguiente**.
+
+![Inicio de sesión en el portal con el usuario Alicia](./screenshots/03-identity-center-18.png)
+
+2. A continuación, introducimos la **contraseña** (en este caso, la contraseña de un solo
+   uso generada previamente para Alicia) y pulsamos **Iniciar sesión**.
+
+![Introducción de la contraseña del usuario Alicia](./screenshots/03-identity-center-19.png)
+
+3. Si todo es correcto, el portal de acceso de AWS muestra las **cuentas a las que
+   Alicia tiene acceso**.  
+   En este laboratorio aparecen:
+
+   - `AWS-DEV-JVELAZQUEZ` (cuenta de Desarrollo)
+   - `AWS-PROD-JVELAZQUEZ` (cuenta de Producción)
+
+   En ambas se ofrece el conjunto de permisos `AdministratorAccess`, que es el que
+   hemos asignado al grupo `Administradores` en los pasos anteriores.
+
+![Portal de acceso mostrando las cuentas DEV y PROD con AdministratorAccess](./screenshots/03-identity-center-20.png)
+
+Con esta prueba se confirma que:
+
+- El usuario `Alicia` se autentica correctamente en el portal de Identity Center.
+- El grupo `Administradores` está bien asociado al conjunto de permisos
+  `AdministratorAccess`.
+- Las asignaciones del grupo a las cuentas de Desarrollo y Producción funcionan
+  correctamente, ya que Alicia ve ambas cuentas en el portal y puede acceder a ellas
+  con permisos de administrador.
+
+
+
 
