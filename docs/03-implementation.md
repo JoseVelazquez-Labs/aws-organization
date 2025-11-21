@@ -155,12 +155,12 @@ credenciales propias de esa cuenta.
 Una vez creadas las cuentas que formarán parte de la organización, el siguiente paso 
 consiste en **agruparlas en Unidades Organizativas (Organizational Units, OU)**.  
 Las OUs permiten aplicar políticas y gobernanza de forma centralizada a conjuntos de 
-cuentas que comparten un mismo propósito (por ejemplo, Producción, Preproducción, Sandbox, etc.).
+cuentas que comparten un mismo propósito (por ejemplo, Producción, Desarrollo, Sandbox, etc.).
 
 En este laboratorio se han creado dos OUs principales bajo la raíz (`Root`):
 
 - `Producción`
-- `Preproducción`
+- `Desarrollo`
 
 ### 5.1 - Creación de la OU de Producción
 
@@ -181,14 +181,14 @@ En este laboratorio se han creado dos OUs principales bajo la raíz (`Root`):
 
 ![OU Producción creada bajo Root](./screenshots/03-pro-ou-created.png)
 
-### 5.2 - Creación de la OU de Preproducción
+### 5.2 - Creación de la OU de Desarrollo
 
-Del mismo modo, se crea una segunda OU destinada a entornos de **preproducción** o 
+Del mismo modo, se crea una segunda OU destinada a entornos de **Desarrollo** o 
 entornos anteriores a Producción.
 
 1. Desde la misma vista de **Organización**, repetimos el proceso de **Unidad organizativa → Crear nueva**.
-2. Asignamos el nombre `Preproducción` a esta nueva OU.
-3. Una vez creada, la estructura organizativa muestra ambas OUs (`Preproducción` y 
+2. Asignamos el nombre `Desarrollo` a esta nueva OU.
+3. Una vez creada, la estructura organizativa muestra ambas OUs (`Desarrollo` y 
    `Producción`) bajo `Root`.
 
 ### 5.3 - Situación inicial de las cuentas y objetivo de la reorganización
@@ -205,11 +205,11 @@ su propósito y poder aplicar políticas diferenciadas en el futuro.
 
 ![Estructura inicial con las tres cuentas bajo Root y las dos OUs recién creadas](./screenshots/03-ou's-created.png)
 
-### 5.4 - Trasladar la cuenta de Desarrollo a la OU de Preproducción
+### 5.4 - Trasladar la cuenta de Desarrollo a la OU de Desarrollo
 
 Aunque en un entorno real se podría optar por colocar la cuenta de desarrollo en una OU 
 específica de `Sandbox` o `Development`, en este laboratorio se traslada la cuenta 
-`AWS-DEV-JVELAZQUEZ` a la OU `Preproducción` a modo de ejemplo de **reorganización de cuentas**.
+`AWS-DEV-JVELAZQUEZ` a la OU `Desarrollo` a modo de ejemplo de **reorganización de cuentas**.
 
 1. Seleccionamos la cuenta `AWS-DEV-JVELAZQUEZ` en la vista de **Organización**.
 2. En el menú **Acciones**, elegimos **Cuenta de AWS → Trasladar**.
@@ -217,7 +217,7 @@ específica de `Sandbox` o `Development`, en este laboratorio se traslada la cue
 ![Selección de la cuenta de Desarrollo para trasladarla a una OU](./screenshots/03-translate-dev.png)
 
 3. En la pantalla de traslado, se muestra la cuenta que se va a mover y la estructura 
-   de destino disponible. Seleccionamos la OU `Preproducción` como destino y confirmamos 
+   de destino disponible. Seleccionamos la OU `Desarrollo` como destino y confirmamos 
    con **Trasladar una cuenta de AWS**.
 
 ![Rol asumido correctamente en la cuenta de Desarrollo](./screenshots/03-translate-dev-2.png)
@@ -226,5 +226,5 @@ específica de `Sandbox` o `Development`, en este laboratorio se traslada la cue
    Tras completar el proceso, la estructura queda organizada de la siguiente manera:
 
 
-![Estructura final con la cuenta de Desarrollo bajo la OU Preproducción](./screenshots/03-final-ou.png)
+![Estructura final con la cuenta de Desarrollo bajo la OU Desarrollo](./screenshots/03-final-ou.png)
 
