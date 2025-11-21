@@ -66,7 +66,7 @@ Este paso se realiza **desde la cuenta de producción**:
 > invitar a una cuenta existente como en este caso, el rol **OrganizationAccountAccessRole**
 > se crea de manera automática.
 
-![Creación del rol confiando en la Management Account](./screenshots/03-iam-rol.png)
+![Creación del rol confiando en la Management Account](./screenshots/03-iam-role.png)
 
 3. Asignamos la política de permisos **AdministratorAccess**, ya que en este laboratorio
    queremos que la Management Account tenga control administrativo completo sobre la 
@@ -75,7 +75,7 @@ Este paso se realiza **desde la cuenta de producción**:
 
 4. Por último, creamos el rol con el nombre **OrganizationAccountAccessRole**.
 
-![Rol OrganizationAccountAccessRole con AdministratorAccess](./screenshots/03-iam-rol-2.png)
+![Rol OrganizationAccountAccessRole con AdministratorAccess](./screenshots/03-iam-role-2.png)
 
 ### 3.3 Prueba de acceso desde la Management Account
 
@@ -84,13 +84,13 @@ desde un usuario IAM de la Management Account:
 
 1. Desde la consola de la Management Account, abrimos el menú de **Cambiar rol**.
 
-![Selección de cuenta y rol](./screenshots/03-change-rol.png)
+![Selección de cuenta y rol](./screenshots/03-witch-role-pro.png)
 
 2. Indicamos la cuenta de producción y el rol **OrganizationAccountAccessRole**. Acto seguido, le damos a **Cambiar función**.
 
 > En **Nombre para mostrar** indiqué **PROD**, pero tomé la captura antes de ello.
 
-![Selección de cuenta y rol](./screenshots/03-change-rol-2.png)
+![Selección de cuenta y rol](./screenshots/03-switch-role-2.png)
 
 3. Tras asumir el rol, la consola mostrará claramente que estamos operando dentro de la
    cuenta de producción utilizando el rol compartido, sin necesidad de utilizar
@@ -98,11 +98,17 @@ desde un usuario IAM de la Management Account:
 
 > Se puede observar cómo arriba a la derecha aparece el **PROD** que añadí en **Nombre para mostrar**
 
-![Rol asumido correctamente en la cuenta de producción](./screenshots/03-rol-changed.png)
+![Rol asumido correctamente en la cuenta de producción](./screenshots/03-role-switched.png)
 
 ## 4. - Automatización de procesos en las AWS Organization
 
 ![Creación de la cuenta de Desarrollo](./screenshots/03-dev-account.png)
+
+![Tres cuentas en la organización: Management, Producción y Desarrollo](./screenshots/03-three-accounts.png)
+
+![Selección de cuenta y rol](./screenshots/03-switch-dev-role.png)
+
+![Selección de cuenta y rol](./screenshots/03-dev-role-switched.png)
 
 ## 5. - Unidades Organizativas (OU)
 
