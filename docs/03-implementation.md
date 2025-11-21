@@ -217,3 +217,107 @@ su propósito y poder aplicar políticas diferenciadas en el futuro.
 
 ![Estructura final con la cuenta de Desarrollo bajo la OU Desarrollo](./screenshots/03-final-ou.png)
 
+## 6. Service Control Policies (SCP) – Ejemplo de denegación de IAM
+
+Las **Service Control Policies (SCP)** permiten definir los permisos máximos que pueden
+tener los usuarios y roles de IAM dentro de las cuentas de una organización.  
+En este apartado se crea una SCP de ejemplo llamada `IAMDeny`, cuyo objetivo es **denegar
+el uso del servicio IAM** en la cuenta de producción.
+
+> Importante: una SCP no concede permisos por sí misma; únicamente limita qué acciones
+> pueden llegar a ser permitidas, incluso si una política de IAM concediera más permisos.
+
+### 6.1 Habilitar las políticas de control de servicios
+
+Por defecto, las SCP vienen deshabilitadas en una nueva organización.  
+Para poder utilizarlas:
+
+1. Desde la **Management Account**, accedemos a **AWS Organizations → Políticas → Políticas de control de servicios**.
+2. Pulsamos en **Habilitar políticas de control de servicios**.
+
+![Habilitar políticas de control de servicios](./screenshots/03-scp.png)
+
+Tras habilitarlas, aparece la vista de **Políticas de control de servicios** con las
+políticas disponibles:
+
+![SCP habilitadas en la organización](./screenshots/03-scp-2.png)
+
+### 6.2 Creación de la política `IAMDeny`
+
+A continuación, se crea una SCP personalizada para denegar el uso de IAM:
+
+1. En la sección de **Políticas de control de servicios**, seleccionamos **Crear política**.
+2. Indicamos:
+   - **Nombre de la política**: `IAMDeny`
+   - **Descripción**: por ejemplo, `Denegación del uso de IAM`.
+
+3. En el editor de la política definimos un único *statement* con:
+   - `Effect: Deny`
+   - `Action: iam:*`
+   - `Resource: *`
+
+Es decir, la política niega **todas las acciones** del servicio IAM sobre **cualquier
+recurso** dentro de la cuenta a la que se aplique.
+
+![Creación de la SCP IAMDeny](./screenshots/03-scp-3.png)
+
+4. Guardamos la política. La nueva SCP `IAMDeny` aparece ahora en la lista de políticas
+disponibles como “Política administrada por el cliente”.
+
+![Política IAMDeny creada correctamente](./screenshots/03-scp-4.png)
+
+### 6.3 Asociación de la SCP a la cuenta de Producción
+
+El siguiente paso es **adjuntar** la política `IAMDeny` a la cuenta de producción
+(`AWS-PROD-JVELAZQUEZ`):
+
+1. Seleccionamos la política `IAMDeny` en la lista.
+2. En el menú **Acciones**, elegimos **Asociar política**.
+
+![Asociar la política IAMDeny](./screenshots/03-scp-5.png)
+
+3. En la pantalla de selección de destinos, navegamos por la estructura de la
+organización y marcamos la cuenta de producción dentro de la OU `Producción`.
+
+![Seleccionar la cuenta de Producción como destino](./screenshots/03-scp-6.png)
+
+4. Confirmamos con **Asociar política**. A partir de este momento, la cuenta de
+producción queda sujeta a la SCP `IAMDeny`.
+
+La vista de detalles de la política muestra ahora la cuenta de producción como destino:
+
+![Cuenta de Producción como destino de la SCP IAMDeny](./screenshots/03-scp-7.png)
+
+### 6.4 Verificación del efecto de la SCP
+
+Para comprobar el efecto de la SCP:
+
+1. Accedemos a la **cuenta de producción** asumiendo el rol `OrganizationAccountAccessRole`
+   desde la Management Account, tal y como se ha descrito en apartados anteriores.
+2. Una vez dentro de la consola de IAM en la cuenta de producción, intentamos realizar
+   una operación básica, como visualizar el resumen de la cuenta (`iam:GetAccountSummary`)
+   o listar alias de cuenta (`iam:ListAccountAliases`).
+
+Debido a la SCP `IAMDeny`, estas acciones son **denegadas**, incluso aunque el rol
+tenga permisos administrativos. La consola muestra mensajes de error indicando que
+“a service control policy explicitly denies the action”:
+
+![Acceso a IAM denegado por la SCP IAMDeny](./screenshots/03-scp-8.png)
+
+Esto confirma que la SCP se está aplicando correctamente y que las políticas de IAM
+dentro de la cuenta no pueden sobrepasar las restricciones impuestas a nivel de
+organización.
+
+### 6.5 Consideraciones de uso
+
+Aunque `IAMDeny` se ha creado aquí con fines demostrativos, este patrón puede
+adaptarse a escenarios reales, por ejemplo:
+
+- Restringir solo ciertas acciones sensibles de IAM (creación de usuarios, borrado
+  de claves, gestión de políticas administradas, etc.).
+- Aplicar políticas similares a otras cuentas u OUs, ajustando el nivel de restricción
+  según el entorno (`Sandbox`, `NonProd`, `Prod`).
+
+En el diseño final de la landing zone, se recomienda combinar varias SCP con
+granularidad adecuada para equilibrar **seguridad** y **operatividad**.
+
