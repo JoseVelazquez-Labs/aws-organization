@@ -152,3 +152,20 @@ credenciales propias de esa cuenta.
 
 ## 5. - Unidades Organizativas (OU)
 
+![Rol asumido correctamente en la cuenta de Desarrollo](./screenshots/03-pro-create-ou.png)
+
+![Rol asumido correctamente en la cuenta de Desarrollo](./screenshots/03-pro-create-ou-2.png)
+
+![Rol asumido correctamente en la cuenta de Desarrollo](./screenshots/03-pro-ou-created.png)
+
+![Rol asumido correctamente en la cuenta de Desarrollo](./screenshots/03-dev-create-ou.png)
+
+![Rol asumido correctamente en la cuenta de Desarrollo](./screenshots/03-dev-ou-created.png)
+
+![Rol asumido correctamente en la cuenta de Desarrollo](./screenshots/03-ou's-created.png)
+
+![Rol asumido correctamente en la cuenta de Desarrollo](./screenshots/03-translate-dev.png)
+
+![Rol asumido correctamente en la cuenta de Desarrollo](./screenshots/03-translate-dev-2.png)
+
+![Rol asumido correctamente en la cuenta de Desarrollo](./screenshots/03-final-ou.png)
