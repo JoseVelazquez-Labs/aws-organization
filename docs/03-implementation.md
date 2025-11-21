@@ -274,6 +274,7 @@ El siguiente paso es **adjuntar** la política `IAMDeny` a la cuenta de producci
 3. En la pantalla de selección de destinos, navegamos por la estructura de la  
    organización y marcamos la cuenta de producción dentro de la OU `Producción`.
 4. Confirmamos con **Asociar política**. A partir de este momento, la cuenta de producción queda sujeta a la SCP `IAMDeny`.
+   
    ![Asociar la política IAMDeny](./screenshots/03-scp-5.png)
 
 ### 6.4 Verificación del efecto de la SCP
