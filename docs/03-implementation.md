@@ -205,26 +205,19 @@ su propósito y poder aplicar políticas diferenciadas en el futuro.
 
 ![Estructura inicial con las tres cuentas bajo Root y las dos OUs recién creadas](./screenshots/03-ou's-created.png)
 
-### 5.4 - Trasladar la cuenta de Desarrollo a la OU de Desarrollo
+### 5.4 - Trasladar las cuentas a su OU correspondiente.
 
 Aunque en un entorno real se podría optar por colocar la cuenta de desarrollo en una OU 
 específica de `Sandbox` o `Development`, en este laboratorio se traslada la cuenta 
 `AWS-DEV-JVELAZQUEZ` a la OU `Desarrollo` a modo de ejemplo de **reorganización de cuentas**.
 
-1. Seleccionamos la cuenta `AWS-DEV-JVELAZQUEZ` en la vista de **Organización**.
+1. Seleccionamos la cuenta en la vista de **Organización**.
 2. En el menú **Acciones**, elegimos **Cuenta de AWS → Trasladar**.
-
-![Selección de la cuenta de Desarrollo para trasladarla a una OU](./screenshots/03-translate-dev.png)
-
 3. En la pantalla de traslado, se muestra la cuenta que se va a mover y la estructura 
    de destino disponible. Seleccionamos la OU `Desarrollo` como destino y confirmamos 
    con **Trasladar una cuenta de AWS**.
-
-![Rol asumido correctamente en la cuenta de Desarrollo](./screenshots/03-translate-dev-2.png)
-
 4. Tras trasladar la cuenta de Desarrollo, procedemos de la misma manera con Producción y su unidad organizativa correspondiente.
    Tras completar el proceso, la estructura queda organizada de la siguiente manera:
-
 
 ![Estructura final con la cuenta de Desarrollo bajo la OU Desarrollo](./screenshots/03-final-ou.png)
 
