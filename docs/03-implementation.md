@@ -214,7 +214,7 @@ específica de `Sandbox` o `Development`, en este laboratorio se traslada la cue
 1. Seleccionamos la cuenta en la vista de **Organización**.
 2. En el menú **Acciones**, elegimos **Cuenta de AWS → Trasladar**.
 3. En la pantalla de traslado, se muestra la cuenta que se va a mover y la estructura 
-   de destino disponible. Seleccionamos la OU `Desarrollo` como destino y confirmamos 
+   de destino disponible. Seleccionamos la OU correspondiente como destino y confirmamos 
    con **Trasladar una cuenta de AWS**.
 4. Tras trasladar la cuenta de Desarrollo, procedemos de la misma manera con Producción y su unidad organizativa correspondiente.
    Tras completar el proceso, la estructura queda organizada de la siguiente manera:
