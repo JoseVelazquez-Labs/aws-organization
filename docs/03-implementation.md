@@ -279,14 +279,8 @@ El siguiente paso es **adjuntar** la política `IAMDeny` a la cuenta de producci
 3. En la pantalla de selección de destinos, navegamos por la estructura de la
 organización y marcamos la cuenta de producción dentro de la OU `Producción`.
 
-![Seleccionar la cuenta de Producción como destino](./screenshots/03-scp-6.png)
-
 4. Confirmamos con **Asociar política**. A partir de este momento, la cuenta de
 producción queda sujeta a la SCP `IAMDeny`.
-
-La vista de detalles de la política muestra ahora la cuenta de producción como destino:
-
-![Cuenta de Producción como destino de la SCP IAMDeny](./screenshots/03-scp-7.png)
 
 ### 6.4 Verificación del efecto de la SCP
 
@@ -294,30 +288,13 @@ Para comprobar el efecto de la SCP:
 
 1. Accedemos a la **cuenta de producción** asumiendo el rol `OrganizationAccountAccessRole`
    desde la Management Account, tal y como se ha descrito en apartados anteriores.
-2. Una vez dentro de la consola de IAM en la cuenta de producción, intentamos realizar
+3. Una vez dentro de la consola de IAM en la cuenta de producción, intentamos realizar
    una operación básica, como visualizar el resumen de la cuenta (`iam:GetAccountSummary`)
    o listar alias de cuenta (`iam:ListAccountAliases`).
+
+![Seleccionar la cuenta de Producción como destino](./screenshots/03-scp-6.png)
 
 Debido a la SCP `IAMDeny`, estas acciones son **denegadas**, incluso aunque el rol
 tenga permisos administrativos. La consola muestra mensajes de error indicando que
 “a service control policy explicitly denies the action”:
-
-![Acceso a IAM denegado por la SCP IAMDeny](./screenshots/03-scp-8.png)
-
-Esto confirma que la SCP se está aplicando correctamente y que las políticas de IAM
-dentro de la cuenta no pueden sobrepasar las restricciones impuestas a nivel de
-organización.
-
-### 6.5 Consideraciones de uso
-
-Aunque `IAMDeny` se ha creado aquí con fines demostrativos, este patrón puede
-adaptarse a escenarios reales, por ejemplo:
-
-- Restringir solo ciertas acciones sensibles de IAM (creación de usuarios, borrado
-  de claves, gestión de políticas administradas, etc.).
-- Aplicar políticas similares a otras cuentas u OUs, ajustando el nivel de restricción
-  según el entorno (`Sandbox`, `NonProd`, `Prod`).
-
-En el diseño final de la landing zone, se recomienda combinar varias SCP con
-granularidad adecuada para equilibrar **seguridad** y **operatividad**.
 
