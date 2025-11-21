@@ -230,13 +230,6 @@ específica de `Sandbox` o `Development`, en este laboratorio se traslada la cue
 4. Tras trasladar la cuenta de Desarrollo, procedemos de la misma manera con Producción y su unidad organizativa correspondiente.
    Tras completar el proceso, la estructura queda organizada de la siguiente manera:
 
-- `Root`
-  - OU `Preproducción`
-    - `AWS-DEV-JVELAZQUEZ`
-  - OU `Producción`
-    - `AWS-PROD-JVELAZQUEZ`
-  - `AWS-GENERAL-JVELAZQUEZ` (Management Account)
-
 
 ![Estructura final con la cuenta de Desarrollo bajo la OU Preproducción](./screenshots/03-final-ou.png)
 
