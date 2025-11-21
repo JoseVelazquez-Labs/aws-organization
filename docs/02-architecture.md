@@ -200,10 +200,6 @@ podemos verlo así:
   - Cuenta `audit-account` en la OU `Security`.
   - Cuenta `shared-services-account` en la OU `Infrastructure`.
 
-Esta distinción es importante de cara a portfolio: muestra que el diseño está pensado
-para ir más allá del laboratorio, pero sin ocultar qué partes están implementadas y
-cuáles son todavía futuras.
-
 ---
 
 ## 5. Relación con la gobernanza y el acceso
