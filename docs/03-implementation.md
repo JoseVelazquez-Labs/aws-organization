@@ -96,7 +96,7 @@ desde un usuario IAM de la Management Account:
 
 ![Rol asumido correctamente en la cuenta de producción](./screenshots/03-pro-role-switched.png)
 
-## 4. - Automatización de procesos en las AWS Organization
+## 4. - Aprovisionamiento de nuevas cuentas desde AWS Organizations
 
 En el apartado anterior se ha visto cómo **invitar una cuenta existente** a la organización
 y crear manualmente el rol `OrganizationAccountAccessRole`.  
