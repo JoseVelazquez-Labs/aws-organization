@@ -88,15 +88,11 @@ desde un usuario IAM de la Management Account:
 
 2. Indicamos la cuenta de producción y el rol **OrganizationAccountAccessRole**. Acto seguido, le damos a **Cambiar función**.
 
-> En **Nombre para mostrar** indiqué **PROD**, pero tomé la captura antes de ello.
-
 ![Selección de cuenta y rol](./screenshots/03-switch-pro-role-2.png)
 
 3. Tras asumir el rol, la consola mostrará claramente que estamos operando dentro de la
    cuenta de producción utilizando el rol compartido, sin necesidad de utilizar
    credenciales directas de esa cuenta.
-
-> Se puede observar cómo arriba a la derecha aparece el **PROD** que añadí en **Nombre para mostrar**
 
 ![Rol asumido correctamente en la cuenta de producción](./screenshots/03-pro-role-switched.png)
 
