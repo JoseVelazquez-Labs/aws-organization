@@ -128,7 +128,7 @@ y políticas más flexibles en entornos de pruebas.
 
 ### 3.3 Gobernanza basada en OUs
 
-La estructura de OUs no es solo “estética”: está pensada para que tenga sentido a la
+La estructura de OUs no es solo “estética”, está pensada para que tenga sentido a la
 hora de aplicar gobernanza:
 
 - La OU **Security** agrupa las cuentas que serán consideradas “críticas” para la
