@@ -188,13 +188,8 @@ entornos anteriores a Producción.
 
 1. Desde la misma vista de **Organización**, repetimos el proceso de **Unidad organizativa → Crear nueva**.
 2. Asignamos el nombre `Preproducción` a esta nueva OU.
-
-![Creación de la OU Preproducción](./screenshots/03-dev-create-ou.png)
-
 3. Una vez creada, la estructura organizativa muestra ambas OUs (`Preproducción` y 
-   `Producción`) bajo `Root`:
-
-![OUs Preproducción y Producción creadas bajo Root](./screenshots/03-dev-ou-created.png)
+   `Producción`) bajo `Root`.
 
 ### 5.3 - Situación inicial de las cuentas y objetivo de la reorganización
 
