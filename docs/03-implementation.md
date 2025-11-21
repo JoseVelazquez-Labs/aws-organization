@@ -102,5 +102,7 @@ desde un usuario IAM de la Management Account:
 
 ## 4. - Automatización de procesos en las AWS Organization
 
+![Creación de la cuenta de Desarrollo](./screenshots/03-dev-account.png)
+
 ## 5. - Unidades Organizativas (OU)
 
