@@ -11,6 +11,8 @@ En `02-architecture.md` explico el **diseño objetivo** y en `03-implementation.
 muestro el **how-to** para crear recursos concretos.  
 Aquí enseño el **resultado actual del laboratorio**.
 
+![Organization](./screenshots/02-aws_organization_architecture.png)
+
 ---
 
 ## 4.1 Estructura de cuentas y OUs
