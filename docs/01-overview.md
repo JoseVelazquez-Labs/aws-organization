@@ -28,7 +28,6 @@ No pretende ser una landing zone enterprise completa, sino una base realista sob
 - **AWS Organizations** → OUs, cuentas miembro, SCP.
 - **IAM** → roles entre cuentas (`OrganizationAccountAccessRole`).
 - **IAM Identity Center** → SSO multi-cuenta con grupos y permission sets.
-- **CloudTrail** → base para logging y protección con SCP.
 
 ---
 
