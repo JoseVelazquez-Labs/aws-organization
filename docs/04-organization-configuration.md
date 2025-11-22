@@ -62,6 +62,8 @@ las OUs de **Seguridad** e **Infraestructura** para cuando la organización crez
 
 ## 4.2 SCP implementadas
 
+``El código completo de estas políticas se encuentra en /docs/scp/SCP-Restrict-Regions.json``
+
 Sobre esta estructura he definido varias **Service Control Policies (SCP)** para
 empezar a aplicar gobernanza:
 
