@@ -1,4 +1,4 @@
-# AWS Multi-Account Landing Zone (Lab)
+# AWS Organization (Lab)
 
 Laboratorio personal en AWS enfocado en **gobernanza multi-cuenta** y acceso centralizado, pensado como parte de mi portfolio.
 
@@ -26,26 +26,23 @@ El objetivo es simular cómo una empresa podría organizar sus cuentas en AWS, s
 
 > Diagrama de la organización (Root, Management Account, OUs y cuentas).
 
-![Diagrama de la organización](./docs/screenshots/02-org-diagram.png)
+![Diagrama de la organización](./docs/screenshots/02-aws_organization_architecture.png)
 
 > El diseño completo está descrito en `docs/02-architecture.md`.
 
 ---
 
-## 📂 Estructura del repositorio
+## 📖 Por dónde empezar
 
-```text
-docs/
-  01-overview.md        # Resumen del laboratorio y objetivos
-  02-architecture.md    # Diseño objetivo: cuentas, OUs, diagrama y principios
-  03-implementation.md  # How-to paso a paso (Organizations, SCP, Identity Center)
-  04-configuration.md   # Estado real actual y mapa de SCP por OU/cuenta
-  05-lessons-learned.md # Aprendizajes y posibles mejoras (Control Tower, IaC, etc.)
-  scp/
-    README.md           # Explicación de las SCP
-    SCP-Restrict-Regions.json
-    SCP-Restrict-Root.json
-    SCP-Protect-CloudTrail.json
-    SCP-Limit-Sandbox-Costs.json
-  screenshots/          # Capturas de la consola AWS usadas en la doc
+Si quieres revisar el proyecto en detalle, recomiendo este orden:
+
+docs/01-overview.md → contexto y objetivos.
+
+docs/02-architecture.md → diagrama y diseño de la organización.
+
+docs/03-implementation.md → implementación paso a paso.
+
+docs/04-configuration.md → foto real de cómo está ahora el laboratorio.
+
+docs/05-lessons-learned.md → reflexión y siguientes pasos.
 
