@@ -26,7 +26,7 @@ El objetivo es simular cómo una empresa podría organizar sus cuentas en AWS, s
 
 > Diagrama de la organización (Root, Management Account, OUs y cuentas).
 
-![Diagrama de la organización](./screenshots/02-aws_organization_architecture.png)
+![Diagrama de la organización](./docs/screenshots/02-aws_organization_architecture.png)
 
 > El diseño completo está descrito en `docs/02-architecture.md`.
 
