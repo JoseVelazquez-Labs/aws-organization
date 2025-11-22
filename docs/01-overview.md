@@ -1,45 +1,49 @@
 # 01 - Overview
 
 Este repositorio recoge un **laboratorio personal de AWS Organizations** orientado a:
-- Practicar **gobernanza multi-cuenta**.
-- Documentar el proceso de forma clara para mi **portfolio**.
+- Practicar **gobernanza multi-cuenta** en AWS.
+- Separar entornos (Prod/Dev/Sandbox) de forma ordenada.
+- Dejar una documentación clara que pueda enseñar en mi **portfolio**.
 
-No es una landing zone enterprise, pero sí un diseño realista que se podría ampliar en una empresa de verdad.
+No pretende ser una landing zone enterprise completa, sino una base realista sobre la que se podría construir algo más grande.
 
 ---
 
 ## 1. Objetivo del laboratorio
 
-- Definir una **landing zone multi-cuenta sencilla**.
-- Separar entornos: **Prod, Dev, Sandbox**.
-- Aplicar **SCP básicas** (regiones, root, costes, CloudTrail).
-- Centralizar acceso con **IAM Identity Center**.
-- Dejar todo documentado como si fuera un pequeño caso real.
+- Diseñar una **landing zone multi-account sencilla**.
+- Organizar cuentas en OUs: **Security, Infrastructure, Workloads, Sandbox**.
+- Aplicar **Service Control Policies (SCP)** para:
+  - Restringir regiones.
+  - Limitar el uso del usuario root.
+  - Proteger servicios clave (CloudTrail, cuentas de seguridad).
+  - Controlar costes en Sandbox.
+- Centralizar accesos con **IAM Identity Center** (usuarios, grupos, permission sets).
+- Documentar todo como si fuese un pequeño caso real de empresa.
 
 ---
 
-## 2. Servicios usados
+## 2. Servicios principales utilizados
 
-- **AWS Organizations**: OUs, cuentas miembro y SCP.
-- **IAM**: roles entre cuentas (`OrganizationAccountAccessRole`).
-- **IAM Identity Center**: usuarios, grupos y permission sets (por ejemplo, `AdministratorAccess`).
-- **CloudTrail**: servicio a proteger con SCP en las cuentas de seguridad.
+- **AWS Organizations** → OUs, cuentas miembro, SCP.
+- **IAM** → roles entre cuentas (`OrganizationAccountAccessRole`).
+- **IAM Identity Center** → SSO multi-cuenta con grupos y permission sets.
+- **CloudTrail** → base para logging y protección con SCP.
 
 ---
 
-## 3. Estructura del repo
+## 3. Estructura del repositorio
 
 ```text
-aws-organization/
-└── docs/
-    ├── 01-overview.md        # Visión general (este archivo)
-    ├── 02-architecture.md    # Diseño objetivo (diagrama y principios)
-    ├── 03-implementation.md  # How-to paso a paso
-    ├── 04-configuration.md   # Estado real actual y SCP aplicadas
-    ├── 05-lessons-learned.md # Aprendizajes y mejoras futuras
-    └── scp/
-        ├── README.md
-        ├── SCP-Restrict-Regions.json
-        ├── SCP-Restrict-Root.json
-        ├── SCP-Protect-CloudTrail.json
-        └── SCP-Limit-Sandbox-Costs.json
+docs/
+  01-overview.md        # Visión general y objetivos (este archivo)
+  02-architecture.md    # Diseño objetivo: cuentas, OUs, diagrama y principios
+  03-implementation.md  # How-to paso a paso (Organizations, SCP, Identity Center)
+  04-configuration.md   # Estado real actual y mapa de SCP por OU/cuenta
+  05-lessons-learned.md # Aprendizajes y mejoras futuras
+  scp/
+    README.md           # Explicación de las SCP
+    SCP-Restrict-Regions.json
+    SCP-Restrict-Root.json
+    SCP-Protect-CloudTrail.json
+    SCP-Limit-Sandbox-Costs.json
