@@ -14,48 +14,7 @@ Primero muestro el **diagrama general**, y después comento de forma sencilla:
 
 ## 1. Diagrama de la organización
 
-```mermaid
-%%{init: {'themeVariables': { 'fontSize': '18px' }, 'flowchart': { 'useMaxWidth': false }}}%%
-graph TD
-    ROOT["AWS Organization (Root)"]
-
-    MGMT["Management Account<br/>AWS-GENERAL-JVELAZQUEZ"]
-
-    OU_SEC["OU Security"]
-    ACC_LOG["log-archive-account"]
-    ACC_AUDIT["audit-account"]
-
-    OU_INF["OU Infrastructure"]
-    ACC_SHARED["shared-services-account"]
-
-    OU_WL["OU Workloads"]
-    OU_PROD["OU Prod"]
-    OU_NONPROD["OU NonProd"]
-    ACC_PROD["AWS-PROD-JVELAZQUEZ"]
-    ACC_DEV["AWS-DEV-JVELAZQUEZ"]
-
-    OU_SB["OU Sandbox"]
-    ACC_SB["PERSONAL-SANDBOX-JVELAZQUEZ"]
-
-    ROOT --> MGMT
-    ROOT --> OU_SEC
-    ROOT --> OU_INF
-    ROOT --> OU_WL
-    ROOT --> OU_SB
-
-    OU_SEC --> ACC_LOG
-    OU_SEC --> ACC_AUDIT
-
-    OU_INF --> ACC_SHARED
-
-    OU_WL --> OU_PROD
-    OU_WL --> OU_NONPROD
-
-    OU_PROD --> ACC_PROD
-    OU_NONPROD --> ACC_DEV
-
-    OU_SB --> ACC_SB
-```
+![Organization](./screenshots/02-aws_organization_architecture.png)
 
 Este diagrama representa la **arquitectura objetivo** de la organización, no solo el
 estado actual del laboratorio. Más abajo explico qué partes están ya desplegadas y
