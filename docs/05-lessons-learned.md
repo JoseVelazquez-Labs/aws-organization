@@ -1,88 +1,74 @@
 # 05 - Lessons learned
 
-En este capítulo resumo los principales aprendizajes del laboratorio y hacia dónde podría evolucionar.
+Resumen de lo más importante que me llevo de este laboratorio.
 
 ---
 
 ## 1. Gobernanza
 
-- **Multi-cuenta desde el principio**  
-  Separar Prod, Dev y Sandbox en cuentas distintas simplifica permisos, trazabilidad y control de costes.
+- **Multi-cuenta desde el inicio**  
+  Separar Prod / Dev / Sandbox en cuentas distintas hace más fácil:
+  - Delegar permisos.
+  - Auditar.
+  - Controlar costes.
 
-- **Las OUs mandan**  
-  Pensar en `Security`, `Infrastructure`, `Workloads` y `Sandbox` me obliga a diseñar por **tipo de cuenta**, no por cuentas aisladas.
+- **Diseñar por tipo de cuenta, no por cuenta suelta**  
+  OUs como `Security`, `Infrastructure`, `Workloads`, `Sandbox` ayudan a pensar en:
+  - Qué va en cada “bloque”.
+  - Qué reglas (SCP) aplican a cada uno.
 
-- **SCP como “reglas del juego”**  
-  - Limitar regiones.
-  - Acotar el uso de root.
-  - Poner freno a Sandbox.  
+- **SCP como marco de seguridad**  
+  - Límite de regiones.
+  - Root muy controlado.
+  - Sandbox con freno de costes.  
 
-  IAM concede permisos; las **SCP marcan el techo** de lo que puede pasar en cada cuenta/OU.
-
----
-
-## 2. Servicios utilizados
-
-### 2.1 AWS Organizations
-- Centro de control para:
-  - Crear cuentas.
-  - Agruparlas en OUs.
-  - Aplicar SCP a nivel de árbol.
-- Diferencia clara entre **invitar cuentas** y **crearlas desde la Organization** con `OrganizationAccountAccessRole` automático.
-
-### 2.2 IAM / IAM Identity Center
-- Paso de usuarios IAM sueltos a:
-  - Usuarios y grupos en Identity Center.
-  - Permission sets reutilizables entre cuentas.
-- Mucho más alineado con un enfoque SSO corporativo y RBAC.
-
-### 2.3 Service Control Policies
-- Muy útiles para políticas globales (regiones, root, sandbox).
-- Lección importante: **probar primero en cuentas de prueba**, porque una SCP mal diseñada puede dejar una cuenta casi inutilizable.
+  IAM otorga permisos; las SCP marcan el perímetro.
 
 ---
 
-## 3. Mirando a una empresa real
+## 2. Servicios clave
 
-En un contexto corporativo tendría sentido:
+- **AWS Organizations**  
+  - Crear cuentas, agruparlas en OUs y aplicar SCP.
+  - Diferencia clara entre invitar cuentas y crearlas desde la Organization.
 
-- Refinar los roles más allá de “Administradores”:
-  - Dev, Ops, Seguridad, Finanzas, etc.
-- Integrar Identity Center con un IdP corporativo (Azure AD, Okta…) y procesos de alta/baja.
-- Estandarizar **naming** y **tagging** para coste, reporting y automatización.
+- **IAM / IAM Identity Center**  
+  - De usuarios IAM individuales a:
+    - Usuarios + grupos en Identity Center.
+    - Permission sets reutilizables por cuenta.
+  - Más parecido a un SSO corporativo real.
 
----
-
-## 4. Posibles mejoras
-
-### 4.1 AWS Control Tower
-- Evaluar Control Tower como landing zone gestionada:
-  - Cuentas de seguridad preconfiguradas.
-  - Guardrails listos para usar.
-  - Integración nativa con Organizations e Identity Center.
-- Comparar este enfoque con la configuración manual del laboratorio.
-
-### 4.2 Monitorización y seguridad
-
-- Centralizar logs con **CloudTrail organizacional** y una cuenta `log-archive`.
-- Añadir servicios como:
-  - AWS Config, GuardDuty, Security Hub.
-  - Alguna solución de observabilidad externa si tiene sentido.
-
-### 4.3 Automatización e IaC
-
-- Describir OUs, cuentas y SCP con **Terraform o CloudFormation**.
-- Gestionar cambios vía GitHub (PRs + pipelines), acercándome a un modelo de **equipo de plataforma**.
+- **Service Control Policies**  
+  - Potentes para reglas globales.  
+  - Lección: probar siempre primero en Sandbox para no bloquear una cuenta por error.
 
 ---
 
-## 5. Conclusión
+## 3. Enfoque “empresa real”
+
+Si esto creciera en producción, tendría sentido:
+
+- Más roles y grupos (Dev, Ops, Seguridad, Finanzas…).  
+- Integración de Identity Center con directorio corporativo.  
+- Naming y tagging consistentes para coste y automatización.
+
+---
+
+## 4. Próximos pasos
+
+- Valorar **AWS Control Tower** como landing zone gestionada.  
+- Añadir capa de seguridad y observabilidad:
+  - CloudTrail organizacional + `log-archive`.
+  - AWS Config, GuardDuty, Security Hub, etc.
+- Pasar la organización a **IaC** (Terraform / CloudFormation) y gestionarla vía GitHub.
+
+---
+
+## 5. Cierre
 
 Este laboratorio me ha servido para:
 
-- Entender mejor la **gobernanza multi-cuenta en AWS**.
-- Practicar con **Organizations, SCP e IAM Identity Center** sobre un caso realista.
-- Empezar a pensar en términos de **guardrails y estructura**, no solo de recursos sueltos.
-
-No es una landing zone completa, pero es una base sólida para mi portfolio y un buen punto de partida para proyectos cloud más serios.
+- Entender mejor la **gobernanza multi-cuenta**.
+- Practicar con **Organizations, SCP e Identity Center** en un caso coherente.
+- Tener una base realista que puedo enseñar en el portfolio y seguir ampliando.
 
