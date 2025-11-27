@@ -19,7 +19,7 @@ El diseño completo (todas las OUs, cuentas y políticas finales) está en
 - [1. Prerrequisitos](#1-prerrequisitos)
 - [2. Creación de la AWS Organization](#2-creación-de-la-aws-organization)
 - [3. Gestión de cuentas](#3-gestión-de-cuentas)
-- [4. Creación de la cuenta de Desarrollo](#4-creación-de-la-cuenta-de-desarrollo)
+- [4. Aprovisionamiento de nuevas cuentas desde AWS Organizations](#4-creación-de-la-cuenta-de-desarrollo)
 - [5. Unidades Organizativas (OU)](#5-unidades-organizativas-ou)
 - [6. SCP de ejemplo (`IAMDeny`)](#6-service-control-policies-scp--ejemplo-de-denegación-de-iam)
 - [7. IAM Identity Center – Flujo básico](#7-iam-identity-center--configuración-inicial)
@@ -118,7 +118,7 @@ Para comprobar que todo funciona:
 
 ---
 
-## 4. Creación de la cuenta de Desarrollo
+## 4. Aprovisionamiento de nuevas cuentas desde AWS Organizations
 
 En este caso, creo la cuenta de **Desarrollo** directamente desde la organización,
 para ver el otro flujo (no invitación).
