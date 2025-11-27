@@ -1,80 +1,64 @@
 # 01 - Overview
 
-Este laboratorio tiene un objetivo simple: **practicar cómo organizar varias cuentas
-de AWS con cabeza**, como lo haría en una empresa, y dejar ese trabajo documentado
-para poder enseñarlo en mi portfolio.
+Este laboratorio nace con una idea concreta: **aprender a diseñar y gobernar una
+AWS Organization pequeña pero seria**, y dejar ese trabajo documentado como parte
+de mi portfolio.
 
-El foco está en la **capa de organización**, no en las aplicaciones:
-
-- Estructura de cuentas y OUs con **AWS Organizations**.  
-- Primeras reglas de **gobernanza y seguridad** con **SCP**.  
-- Acceso centralizado con **IAM Identity Center**.
-
-No es una landing zone enterprise, pero sí un diseño realista sobre el que se podría
-construir algo más completo.
+No busco montar muchas aplicaciones, sino entender bien la “capa de organización”:
+cómo estructurar cuentas, cómo empezar a poner reglas y cómo centralizar el acceso.
 
 ---
 
-## 1. En qué consiste el laboratorio
+## 1. Objetivo y enfoque
 
-En lugar de montar recursos sueltos, trabajo sobre una **organización multi-cuenta**
-con esta idea:
+De forma resumida, este proyecto me sirve para:
 
-- Una cuenta de administración (*Management Account*).  
-- Cuentas separadas para **Producción**, **Desarrollo** y **Sandbox personal**.  
-- OUs pensadas para crecer: `Security`, `Infrastructure`, `Workloads`, `Sandbox`.  
-- Un conjunto inicial de **SCP** para:
-  - Restringir regiones.
-  - Limitar el uso del usuario root.
-  - Proteger servicios clave (como CloudTrail, a futuro).
-  - Reducir riesgos de coste en Sandbox.
-- Un modelo sencillo de acceso con **IAM Identity Center**:
-  - Usuarios y grupos.
-  - Permission sets reutilizables entre cuentas.
+- Practicar el diseño de una **organización multi-cuenta** como lo haría en una empresa.  
+- Empezar a aplicar **gobernanza** con un conjunto reducido de SCP.  
+- Probar un modelo sencillo de **acceso centralizado** con IAM Identity Center.  
+- Acostumbrarme a documentar decisiones técnicas, no solo pasos de consola.
 
-La idea es tratarlo como un **mini caso real** y no como un ejemplo aislado.
+Los detalles de la arquitectura (OUs, cuentas, diagrama, etc.) se explican en  
+`02-architecture.md`. Aquí solo dejo claro **el “para qué”** del laboratorio.
 
 ---
 
-## 2. Alcance real del proyecto
+## 2. Alcance real
 
-Este laboratorio **sí cubre**:
+Lo que **sí trabajo** en este laboratorio:
 
-- La estructura de la organización (cuentas + OUs).  
-- Un conjunto inicial de SCP aplicado sobre Root y algunas OUs.  
-- Un modelo básico de acceso administrativo con IAM Identity Center.
+- Cómo estructurar la organización (sin entrar en automatización compleja).  
+- Un primer set de SCP para marcar límites básicos.  
+- Un modelo de acceso administrativo usando Identity Center.
 
-Y **no cubre todavía**:
+Lo que **queda fuera por ahora**:
 
-- Automatización con IaC (Terraform / CloudFormation).  
-- Control Tower ni soluciones gestionadas de landing zone.  
-- Monitorización y cumplimiento avanzados (Config, Security Hub, etc.).
+- IaC (Terraform / CloudFormation) para desplegar todo.  
+- Control Tower u otras soluciones gestionadas.  
+- Servicios de seguridad y cumplimiento avanzados.
 
-Estos puntos aparecen como posibles mejoras en `05-lessons-learned.md`.
+Estas piezas se mencionan como siguientes pasos en `05-lessons-learned.md`.
 
 ---
 
-## 3. Costes y lecciones rápidas
+## 3. Costes: lo que he aprendido
 
-Aunque el montaje es de laboratorio, hay dos temas de coste que he tenido en cuenta:
+Aunque es un entorno de pruebas, el coste no es un detalle menor:
 
-- **AWS Budgets**  
-  Es recomendable crear uno o varios presupuestos con alertas (50 %, 80 %, 100 %)
-  antes de montar la organización, para detectar cualquier gasto inesperado.
+- **Presupuestos (AWS Budgets)**  
+  Configurar alertas antes de montar la organización ayuda a detectar rápidamente
+  cualquier gasto raro.
 
 - **Créditos y free tier**  
-  Algunas cuentas incluyen créditos promocionales (por ejemplo, 200 USD).  
-  En mi caso, al usar esa cuenta como **Management Account** dentro de una
-  AWS Organization, esos créditos dejaron de aplicarse.  
-  Merece la pena revisar las condiciones y valorar si la Management Account
-  debería ser otra cuenta distinta.
+  Al usar una cuenta con créditos como **Management Account** dentro de una
+  AWS Organization, vi que los créditos dejaban de aplicarse.  
+  Es algo a tener en cuenta a la hora de elegir qué cuenta usar como administración.
 
 ---
 
-## 4. Cómo leer el resto de documentos
+## 4. Relación con el resto de documentos
 
-- `02-architecture.md` → cómo está pensada la organización (diagrama y principios).  
-- `03-implementation.md` → pasos que he seguido para montarla.  
-- `04-current-configuration.md` → foto real de lo que existe hoy.  
-- `05-lessons-learned.md` → qué he aprendido y cómo lo mejoraría.
-
+- `02-architecture.md` → diseño de la organización (cómo quiero que esté montada).  
+- `03-implementation.md` → cómo la he ido construyendo paso a paso.  
+- `04-current-configuration.md` → estado real a día de hoy.  
+- `05-lessons-learned.md` → conclusiones y siguientes mejoras que tendría sentido abordar.
