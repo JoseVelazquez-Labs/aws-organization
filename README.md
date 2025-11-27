@@ -23,6 +23,12 @@ El proyecto está pensado como pieza de portfolio para un perfil **Cloud / DevOp
 en transición hacia roles más centrados en AWS.
 
 ---
+## Diagrama de la organización
+
+![Diagrama de la organización AWS](./docs/screenshots/02-aws_organization_architecture.png)
+
+> El diseño completo de la arquitectura (OUs, cuentas y principios) está descrito en  
+> `docs/02-architecture.md`.
 
 ## Estructura del repositorio
 
