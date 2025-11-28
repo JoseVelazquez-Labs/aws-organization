@@ -1,15 +1,18 @@
 # AWS Multi-account Organization Lab
 
-Laboratorio personal donde maqueto una **AWS Organization multi-cuenta** pensando
-en un entorno real (aunque de tamaño pequeño) y lo documento como proyecto de portfolio.
+Laboratorio personal donde diseño y documento una **AWS Organization multi-cuenta**  
+pensando en un entorno “tipo empresa”, pero de tamaño controlado y asumible para un perfil junior.
+
+El foco está en **gobernanza y acceso**, no en desplegar aplicaciones complejas.
 
 Tecnologías principales:
 
-- **AWS Organizations** (OUs y cuentas)
-- **IAM + Service Control Policies (SCP)**
-- **IAM Identity Center (SSO)**
+- **AWS Organizations** → OUs, cuentas miembro y estructura multi-cuenta.
+- **IAM + Service Control Policies (SCP)** → reglas globales de seguridad y uso.
+- **IAM Identity Center (SSO)** → acceso centralizado por grupos y permission sets.
 
-No es una landing zone corporativa, pero sí una base seria para practicar gobernanza en AWS.
+No es una landing zone corporativa completa, pero sí una **base seria y realista**
+para practicar buenas prácticas de organización en AWS.
 
 ---
 
@@ -17,35 +20,42 @@ No es una landing zone corporativa, pero sí una base seria para practicar gober
 
 ![Diagrama de la organización AWS](./docs/screenshots/02-aws_organization_architecture.png)
 
-> El diseño completo se explica en `docs/02-architecture.md`.
+> El diseño completo (cuentas, OUs y principios) se explica en  
+> `docs/02-architecture.md`.
 
 ---
 
-## Estructura del repositorio
+## Contenido del repositorio
 
 ```text
 aws-organization/
 ├── docs/
-│   ├── 01-overview.md              # Contexto y objetivos del laboratorio
-│   ├── 02-architecture.md          # Cuentas, OUs y principios de diseño
-│   ├── 03-implementation.md        # Pasos que he seguido (how-to)
-│   ├── 04-current-configuration.md # Foto real de la organización hoy
-│   └── 05-lessons-learned.md       # Qué he aprendido y cómo lo ampliaría
+│   ├── 01-overview.md              # Contexto general y objetivos del laboratorio
+│   ├── 02-architecture.md          # Diseño objetivo: cuentas, OUs y decisiones de arquitectura
+│   ├── 03-implementation.md        # How-to paso a paso (Organizations, SCP, Identity Center)
+│   ├── 04-current-configuration.md # Foto real de lo que está desplegado hoy
+│   └── 05-lessons-learned.md       # Aprendizajes y siguientes pasos posibles
 │
-├── docs/scp/                       # SCP en JSON
+├── docs/scp/                       # Service Control Policies en formato JSON
 │   ├── SCP-Restrict-Regions.json
 │   ├── SCP-Restrict-Root.json
 │   ├── SCP-Protect-CloudTrail.json
 │   └── SCP-Limit-Sandbox-Costs.json
 │
-└── docs/screenshots/               # Capturas de consola y diagramas
+└── docs/screenshots/               # Capturas de consola y diagramas usados en la doc
+
 ````
 ## Nota sobre costes
 
-El laboratorio está pensado para minimizar gasto, pero:
+Aunque es un entorno de laboratorio, hay dos puntos importantes:
 
-- Conviene crear **AWS Budgets** con alertas antes de montar la Organization.
-- En mi caso, al usar una cuenta con créditos como **Management Account**, los créditos
-  dejaron de aplicarse al unirse a la AWS Organization.
+- AWS Budgets
+Es muy recomendable crear uno o varios presupuestos con alertas (por ejemplo, al 50 %, 80 % y 100 %)
+antes de montar la Organization, para detectar cualquier gasto inesperado.
 
-Lo dejo reflejado porque influye en cómo elegir la cuenta de administración en la vida real.
+- Créditos y free tier
+Algunas cuentas nuevas incluyen créditos promocionales (por ejemplo, 200 USD).
+En mi caso, al usar esa cuenta como Management Account dentro de una AWS Organization,
+esos créditos dejaron de aplicarse.
+Por eso lo reflejo en la documentación: en un entorno real puede influir en qué cuenta eliges
+como cuenta de administración.
