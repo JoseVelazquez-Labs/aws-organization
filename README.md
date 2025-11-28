@@ -1,6 +1,6 @@
 # AWS Multi-account Organization Lab
 
-Laboratorio personal donde maqueto una **AWS Organization multi-cuenta** pensando ya
+Laboratorio personal donde maqueto una **AWS Organization multi-cuenta** pensando
 en un entorno real (aunque de tamaño pequeño) y lo documento como proyecto de portfolio.
 
 Tecnologías principales:
