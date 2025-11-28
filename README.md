@@ -49,11 +49,10 @@ aws-organization/
 
 Aunque es un entorno de laboratorio, hay dos puntos importantes:
 
-- AWS Budgets
-Es muy recomendable crear uno o varios presupuestos con alertas (por ejemplo, al 50 %, 80 % y 100 %)
+- **AWS Budgets**: Es muy recomendable crear uno o varios presupuestos con alertas (por ejemplo, al 50 %, 80 % y 100 %)
 antes de montar la Organization, para detectar cualquier gasto inesperado.
 
-- Créditos y free tier
+- **Créditos y free tier**:
 Algunas cuentas nuevas incluyen créditos promocionales (por ejemplo, 200 USD).
 En mi caso, al usar esa cuenta como Management Account dentro de una AWS Organization,
 esos créditos dejaron de aplicarse.
